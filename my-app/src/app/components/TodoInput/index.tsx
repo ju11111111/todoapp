@@ -29,7 +29,13 @@ export default function TodoInput({
         value={content}
         onChange={e => setContent(e.target.value)}
         onKeyPress={e => {
+          {
+            /*입력된 값이 없을 경우 그냥 return 처리를 해서 아래 코드가 실행 안되게 함*/
+          }
           if (content === '') return;
+          {
+            /*엔터키를 친게 아닐경우 그냥 return 처리를 해서 아래 코드가 실행 안되게 함*/
+          }
           if (e.key !== 'Enter' && e.key !== 'NumpadEnter') return;
           setTodoList({
             id: '0',
