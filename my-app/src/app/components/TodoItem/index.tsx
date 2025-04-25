@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import Block from "../Block";
-import CheckBox from "../CheckBox";
+import styled from 'styled-components';
+import Block from '../Block';
+import CheckBox from '../CheckBox';
+import React from 'react';
 
 const Box = styled.div`
   display: flex;
@@ -11,25 +12,24 @@ const Box = styled.div`
   border-bottom: 1px solid #eee;
 `;
 
-const TodoContent = styled.span<{ checked:boolean}>`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap:break-word;
-    display:-webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    cursor: text;
-    text-decoration: ${props => props.checked ? 'line-through' : 'initial'};
-    color: ${props => props.checked ? '#aaa':'#111'};
+const TodoContent = styled.span<{ checked?: boolean }>`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  cursor: text;
+  text-decoration: ${props => (props.checked ? 'line-through' : 'initial')};
+  color: ${props => (props.checked ? '#aaa' : '#111')};
 `;
 
 export default function TodoItem({ todo }: { todo: ITodoItem }) {
-    return (
-        <Box>
-            <CheckBox checked={todo.completed} />
-            <Block marginLeft="10px"/>
-            <TodoContent checked={todo.completed}>투두입니다.</TodoContent>
-
-        </Box>
-    );
-};
+  return (
+    <Box>
+      <CheckBox checked={todo.completed} />
+      <Block marginLeft="10px" />
+      <TodoContent checked={todo.completed}>{todo.content}</TodoContent>
+    </Box>
+  );
+}

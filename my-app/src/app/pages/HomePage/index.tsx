@@ -8,8 +8,8 @@ import TodoItem from 'app/components/TodoItem';
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  display:flex;
-  justify-content :center ;
+  display: flex;
+  justify-content: center;
   align-items: center;
   background: #f0f6f8;
 `;
@@ -27,16 +27,30 @@ const Title = styled.h1`
   padding: 15px 25px;
 `;
 
-const TodoList = styled.div`
-  
-`;
-
-
-const TodoCheck = styled.input`
-  margin-right: 15px;
-`;
+const TodoList = styled.div``;
 
 export function HomePage() {
+  const [todoList, setTodoList] = React.useState<ITodoItem[]>([
+    {
+      id: '1',
+      content: '첫번째 투두',
+      completed: true,
+      editing: false,
+    },
+    {
+      id: '2',
+      content: '두번째 투두',
+      completed: false,
+      editing: false,
+    },
+    {
+      id: '3',
+      content: '세번째 투두',
+      completed: false,
+      editing: false,
+    },
+  ]);
+
   return (
     <>
       <Helmet>
@@ -46,28 +60,14 @@ export function HomePage() {
       <Wrapper>
         <Box>
           <Title>오늘 할 일</Title>
-          <TodoInput />
+          <TodoInput
+            setTodoList={(todo: ITodoItem) => setTodoList([todo, ...todoList])}
+          />
           <TodoList>
-            <TodoItem todo={{
-              id:'1',
-              completed:false,
-              content:'투두입니다 1',
-              editing: false,
-            }}>
-            </TodoItem>
-              <TodoItem todo={{
-              id:'2',
-              completed:true,
-              content:'투두입니다 2',
-              editing: false,
-            }}>
-            </TodoItem>
-            <TodoItem todo={{
-              id:'3',
-              completed:true,
-              content:'투두입니다 3',
-              editing: false,
-            }}></TodoItem>
+            {/* 하나하나 반복문으로 불러오는것? .map */}
+            {todoList.map(todo => (
+              <TodoItem todo={todo} />
+            ))}
           </TodoList>
         </Box>
       </Wrapper>
